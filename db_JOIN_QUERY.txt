@@ -56,4 +56,12 @@ QUERY CON JOIN :
     ORDER BY `teachers`.`id`  ASC
 }
 
-7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare  ciascuno dei suoi esami
+7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare  ciascuno dei suoi esami {
+
+SELECT `students`.`name` , `students`.`surname` , `students`.`registration_number`, `courses`.`name` , `exam_student`.`vote` , `exam_student`.`exam_id`
+FROM `students`
+INNER JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`
+INNER JOIN `exams` ON `exams`.`id` = `exam_student`.`exam_id`
+INNER JOIN `courses` ON `courses`.`id` = `exams`.`course_id`
+ORDER BY `students`.`id`;
+
